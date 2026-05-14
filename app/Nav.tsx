@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingBag } from 'lucide-react';
 
 const links = [
   { href: '/about', label: 'ABOUT' },
   { href: '/creators', label: 'CREATORS' },
+  { href: '/shop', label: 'SHOP' },
   { href: '/apply', label: 'CONTACT' },
 ];
 
@@ -22,8 +23,8 @@ export default function Nav() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-[#0a0a0a]/95 backdrop-blur-sm border-b border-white/[0.06]' : ''}`}>
-      <div className="max-w-[1400px] mx-auto px-8 md:px-12 h-[72px] flex items-center justify-between">
-        <Link href="/" className="text-[15px] font-black tracking-[0.25em] text-white">
+      <div className="max-w-[1400px] mx-auto px-8 md:px-16 h-[68px] flex items-center justify-between">
+        <Link href="/" className="text-[14px] font-black tracking-[0.25em] text-white">
           DOOHO
         </Link>
 
@@ -36,7 +37,10 @@ export default function Nav() {
           ))}
         </nav>
 
-        <div className="hidden md:flex">
+        <div className="hidden md:flex items-center gap-5">
+          <Link href="/shop" className="text-white/30 hover:text-white transition-colors">
+            <ShoppingBag size={17} />
+          </Link>
           <Link href="/apply"
             className="text-[11px] font-bold tracking-[0.2em] text-black bg-white px-5 py-2.5 hover:bg-white/85 transition-colors duration-200">
             협업 문의
