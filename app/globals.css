@@ -5,8 +5,27 @@
 body {
   background: #0a0a0a;
   color: #ffffff;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html { scroll-behavior: smooth; }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+
+@keyframes marquee-slow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+
+.animate-marquee {
+  animation: marquee 18s linear infinite;
+}
+
+.animate-marquee-slow {
+  animation: marquee-slow 30s linear infinite;
+}

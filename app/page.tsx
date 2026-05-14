@@ -1,172 +1,233 @@
 import Link from 'next/link';
-import { ArrowRight, Play, Star } from 'lucide-react';
-
-const products = [
-  { id: 1, name: '에어핏 레깅스', brand: '젝시믹스', price: 53100, tag: 'BEST', emoji: '🩱' },
-  { id: 2, name: '무결점 쿠션', brand: '어뮤즈', price: 38000, tag: 'NEW', emoji: '💄' },
-  { id: 3, name: '린넨 와이드 팬츠', brand: 'MANGO', price: 71200, tag: 'SALE', emoji: '👖' },
-  { id: 4, name: '유기농 그래놀라', brand: '마켓컬리', price: 14155, tag: '', emoji: '🥣' },
-];
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
 const creators = [
-  { name: '김민지', handle: '@minji_fit', category: '스포츠', followers: '18.2만', emoji: '🏋️' },
-  { name: '박서연', handle: '@seo_beauty', category: '뷰티', followers: '54.3만', emoji: '💅' },
-  { name: '이지호', handle: '@jiho_eats', category: '푸드', followers: '9.7만', emoji: '🍜' },
-  { name: '최아름', handle: '@arum_style', category: '패션', followers: '23.1만', emoji: '👗' },
+  { name: '김민지', handle: '@minji_fit', category: 'FITNESS', followers: '182K', emoji: '🏋️' },
+  { name: '박서연', handle: '@seo_beauty', category: 'BEAUTY', followers: '543K', emoji: '💅' },
+  { name: '이지호', handle: '@jiho_eats', category: 'FOOD', followers: '97K', emoji: '🍜' },
+  { name: '최아름', handle: '@arum_style', category: 'FASHION', followers: '231K', emoji: '👗' },
+  { name: '한도윤', handle: '@doyoon_life', category: 'LIFESTYLE', followers: '45K', emoji: '🏠' },
+  { name: '정현우', handle: '@hyunwoo_fit', category: 'FITNESS', followers: '112K', emoji: '💪' },
 ];
+
+const businesses = [
+  {
+    num: '01',
+    title: 'MCN 에이전시',
+    en: 'CREATOR MANAGEMENT',
+    desc: '크리에이터 발굴부터 브랜드 매칭, 콘텐츠 전략까지. 크리에이터의 성장 여정을 함께합니다.',
+  },
+  {
+    num: '02',
+    title: 'DH SHOP',
+    en: 'COMMERCE',
+    desc: '크리에이터가 직접 큐레이션한 상품들. 타임딜, 공동구매, 라이브 커머스를 한 플랫폼에서.',
+  },
+  {
+    num: '03',
+    title: '라이브 커머스',
+    en: 'LIVE COMMERCE',
+    desc: '실시간 방송을 통한 상품 판매 및 브랜드 협업. 크리에이터의 영향력을 매출로 전환합니다.',
+  },
+];
+
+const partners = ['MANGO', 'ADER', '젝시믹스', '어뮤즈', '한샘', '마켓컬리', 'NIKE', 'AESOP'];
 
 export default function Home() {
   return (
     <main>
       {/* ── HERO ── */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-950 to-black" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.03)_0%,_transparent_70%)]" />
-        <div className="absolute inset-0 opacity-[0.03]"
-          style={{ backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
+      <section className="relative min-h-screen flex flex-col justify-end pb-20 overflow-hidden">
+        {/* BG */}
+        <div className="absolute inset-0 bg-[#0a0a0a]" />
+        <div className="absolute inset-0"
+          style={{ backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(255,255,255,0.03) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.02) 0%, transparent 50%)' }} />
 
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-          <p className="text-[11px] font-bold tracking-[0.4em] text-white/40 mb-8 uppercase">MCN × SHOP × CREATOR</p>
-          <h1 className="text-[60px] md:text-[100px] font-black leading-none tracking-tighter mb-8">
-            <span className="block text-white">DOOHO</span>
-            <span className="block text-white/20">CORP.</span>
+        {/* Center label */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-6 select-none pointer-events-none">
+          <p className="text-[11px] font-bold tracking-[0.5em] text-white/15 uppercase">MCN Agency × Commerce</p>
+        </div>
+
+        {/* Main text */}
+        <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-12 w-full">
+          <h1 className="text-[72px] sm:text-[100px] md:text-[130px] lg:text-[160px] font-black leading-[0.88] tracking-[-0.04em] text-white mb-8">
+            DOOHO<span className="text-white/15">.</span>
           </h1>
-          <p className="text-white/50 text-lg max-w-xl mx-auto mb-12 leading-relaxed">
-            크리에이터와 브랜드를 연결하는 MCN 에이전시.<br />
-            쇼핑, 콜라보, 라이브 커머스를 한 곳에서.
-          </p>
-          <div className="flex items-center justify-center gap-4 flex-wrap">
-            <Link href="/shop"
-              className="flex items-center gap-2 px-8 py-4 bg-white text-black text-sm font-bold tracking-widest hover:bg-white/90 transition-colors">
-              SHOP NOW <ArrowRight size={16} />
-            </Link>
-            <Link href="/creators"
-              className="flex items-center gap-2 px-8 py-4 border border-white/20 text-white text-sm font-bold tracking-widest hover:border-white/60 transition-colors">
-              CREATORS <Play size={14} />
-            </Link>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <p className="text-white/40 text-base md:text-lg max-w-sm leading-relaxed">
+              크리에이터 경제의 새로운 기준.<br />
+              브랜드와 크리에이터를 연결하는 MCN 에이전시.
+            </p>
+            <div className="flex items-center gap-6">
+              <Link href="/creators"
+                className="flex items-center gap-3 text-[11px] font-bold tracking-[0.2em] text-white/50 hover:text-white transition-colors group">
+                CREATORS
+                <span className="w-8 h-px bg-white/30 group-hover:bg-white group-hover:w-12 transition-all duration-300" />
+              </Link>
+              <Link href="/apply"
+                className="flex items-center gap-2 px-7 py-3.5 bg-white text-black text-[11px] font-black tracking-[0.2em] hover:bg-white/88 transition-colors">
+                협업 문의 <ArrowRight size={14} />
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <div className="w-px h-12 bg-gradient-to-b from-transparent to-white/30 animate-pulse" />
-          <p className="text-[10px] tracking-[0.3em] text-white/30">SCROLL</p>
+        {/* Scroll */}
+        <div className="absolute bottom-8 right-12 flex items-center gap-3 select-none">
+          <div className="w-px h-12 bg-gradient-to-b from-transparent to-white/20" />
+          <p className="text-[10px] tracking-[0.3em] text-white/20 rotate-90 origin-center translate-y-2">SCROLL</p>
+        </div>
+      </section>
+
+      {/* ── TICKER ── */}
+      <div className="border-y border-white/[0.06] bg-[#0f0f0f] overflow-hidden py-4">
+        <div className="flex gap-16 animate-marquee whitespace-nowrap">
+          {Array(3).fill(['MCN 에이전시', 'DH SHOP', 'LIVE COMMERCE', 'CREATOR MANAGEMENT', 'BRAND COLLABORATION', 'CONTENT STRATEGY']).flat().map((t, i) => (
+            <span key={i} className="text-[11px] font-bold tracking-[0.25em] text-white/20 uppercase">
+              {t} <span className="mx-6 text-white/10">—</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* ── BUSINESS AREAS ── */}
+      <section className="max-w-[1400px] mx-auto px-8 md:px-12 py-32 md:py-40">
+        <div className="flex items-end justify-between mb-20">
+          <div>
+            <p className="text-[10px] font-bold tracking-[0.4em] text-white/25 mb-5">WHAT WE DO</p>
+            <h2 className="text-4xl md:text-5xl font-black tracking-[-0.03em] leading-tight">
+              세 가지 방식으로<br />크리에이터와 함께합니다.
+            </h2>
+          </div>
+          <Link href="/about" className="hidden md:flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] text-white/30 hover:text-white transition-colors group">
+            MORE <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </Link>
+        </div>
+
+        <div className="divide-y divide-white/[0.06]">
+          {businesses.map((b, i) => (
+            <div key={b.num} className="group py-10 md:py-12 flex flex-col md:flex-row md:items-center gap-6 md:gap-0 cursor-default hover:bg-white/[0.015] -mx-8 px-8 transition-colors duration-300">
+              <div className="md:w-24 shrink-0">
+                <span className="text-[11px] font-bold tracking-[0.3em] text-white/20">{b.num}</span>
+              </div>
+              <div className="md:w-80 shrink-0">
+                <p className="text-[10px] font-bold tracking-[0.3em] text-white/30 mb-2">{b.en}</p>
+                <h3 className="text-2xl font-black tracking-tight text-white">{b.title}</h3>
+              </div>
+              <div className="flex-1">
+                <p className="text-white/40 text-sm leading-relaxed max-w-md">{b.desc}</p>
+              </div>
+              <div className="md:pl-8 shrink-0">
+                <ArrowUpRight size={18} className="text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* ── STATS ── */}
-      <section className="border-y border-white/5 bg-zinc-950">
-        <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { num: '200+', label: 'CREATORS' },
-            { num: '50+', label: 'BRANDS' },
-            { num: '1M+', label: 'FOLLOWERS' },
-            { num: '5년+', label: 'EXPERIENCE' },
-          ].map(s => (
-            <div key={s.label} className="text-center">
-              <p className="text-4xl font-black text-white mb-2">{s.num}</p>
-              <p className="text-[11px] tracking-widest text-white/30 font-semibold">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── SHOP ── */}
-      <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="flex items-end justify-between mb-12">
-          <div>
-            <p className="text-[11px] tracking-[0.3em] text-white/30 font-semibold mb-3">— SHOP</p>
-            <h2 className="text-4xl font-black tracking-tight">POPULAR<br />ITEMS</h2>
-          </div>
-          <Link href="/shop" className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors tracking-widest">
-            ALL ITEMS <ArrowRight size={14} />
-          </Link>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {products.map(p => (
-            <Link href="/shop" key={p.id}
-              className="group bg-zinc-900 border border-white/5 hover:border-white/20 transition-all overflow-hidden">
-              <div className="aspect-square bg-zinc-800 flex items-center justify-center text-6xl group-hover:scale-105 transition-transform duration-300">
-                {p.emoji}
-              </div>
-              <div className="p-4">
-                {p.tag && <span className="text-[10px] font-bold tracking-widest text-white/40 bg-white/5 px-2 py-0.5 mb-2 inline-block">{p.tag}</span>}
-                <p className="text-sm font-semibold text-white mb-1">{p.name}</p>
-                <p className="text-xs text-white/30 mb-2">{p.brand}</p>
-                <p className="text-sm font-bold">₩{p.price.toLocaleString()}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* ── CREATORS ── */}
-      <section className="bg-zinc-950 py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <p className="text-[11px] tracking-[0.3em] text-white/30 font-semibold mb-3">— CREATORS</p>
-              <h2 className="text-4xl font-black tracking-tight">OUR<br />CREATORS</h2>
-            </div>
-            <Link href="/creators" className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors tracking-widest">
-              ALL <ArrowRight size={14} />
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {creators.map(c => (
-              <div key={c.name} className="group bg-black border border-white/5 hover:border-white/20 transition-all p-6 cursor-pointer">
-                <div className="w-16 h-16 bg-zinc-900 rounded-full flex items-center justify-center text-3xl mb-4 group-hover:scale-105 transition-transform">
-                  {c.emoji}
-                </div>
-                <p className="font-bold text-white mb-0.5">{c.name}</p>
-                <p className="text-xs text-white/30 mb-3">{c.handle}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] tracking-wider text-white/40 bg-white/5 px-2 py-0.5">{c.category}</span>
-                  <span className="text-xs text-white/50 flex items-center gap-1"><Star size={10} />{c.followers}</span>
-                </div>
+      <section className="bg-white text-black py-24 md:py-28">
+        <div className="max-w-[1400px] mx-auto px-8 md:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-0 md:divide-x divide-black/10">
+            {[
+              { num: '200+', label: 'Creators' },
+              { num: '50+', label: 'Partner Brands' },
+              { num: '1M+', label: 'Total Followers' },
+              { num: '5년+', label: 'Experience' },
+            ].map(s => (
+              <div key={s.label} className="md:px-12 first:pl-0 last:pr-0">
+                <p className="text-5xl md:text-6xl font-black tracking-tight text-black mb-2">{s.num}</p>
+                <p className="text-[11px] font-bold tracking-[0.2em] text-black/40 uppercase">{s.label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── 협업 CTA ── */}
-      <section className="relative py-32 overflow-hidden bg-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-[11px] tracking-[0.4em] text-black/30 font-bold mb-6">COLLABORATION</p>
-          <h2 className="text-5xl md:text-7xl font-black text-black tracking-tighter mb-6">
-            함께 성장할<br />크리에이터를<br />찾습니다.
+      {/* ── CREATORS ── */}
+      <section className="max-w-[1400px] mx-auto px-8 md:px-12 py-32 md:py-40">
+        <div className="flex items-end justify-between mb-16">
+          <div>
+            <p className="text-[10px] font-bold tracking-[0.4em] text-white/25 mb-5">OUR CREATORS</p>
+            <h2 className="text-4xl md:text-5xl font-black tracking-[-0.03em]">크리에이터</h2>
+          </div>
+          <Link href="/creators" className="flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] text-white/30 hover:text-white transition-colors group">
+            전체 보기 <ArrowUpRight size={14} />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {creators.map(c => (
+            <div key={c.name} className="group bg-[#111111] border border-white/[0.05] hover:border-white/15 transition-all duration-300 p-6 cursor-pointer">
+              <div className="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center text-2xl mb-5 group-hover:scale-105 transition-transform duration-300">
+                {c.emoji}
+              </div>
+              <p className="text-[10px] font-bold tracking-[0.2em] text-white/25 mb-2">{c.category}</p>
+              <p className="font-bold text-white text-sm mb-0.5">{c.name}</p>
+              <p className="text-xs text-white/30 mb-3">{c.handle}</p>
+              <p className="text-xs font-bold text-white/50">{c.followers}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── PARTNERS ── */}
+      <section className="border-y border-white/[0.06] bg-[#0d0d0d] py-16 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-8 md:px-12 mb-10">
+          <p className="text-[10px] font-bold tracking-[0.4em] text-white/20 uppercase">Partner Brands</p>
+        </div>
+        <div className="flex gap-12 animate-marquee-slow whitespace-nowrap">
+          {Array(3).fill(partners).flat().map((p, i) => (
+            <span key={i} className="text-[13px] font-black tracking-[0.15em] text-white/20 hover:text-white/50 transition-colors cursor-default uppercase">
+              {p}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="max-w-[1400px] mx-auto px-8 md:px-12 py-32 md:py-48">
+        <div className="max-w-3xl">
+          <p className="text-[10px] font-bold tracking-[0.4em] text-white/25 mb-8">COLLABORATION</p>
+          <h2 className="text-5xl md:text-7xl lg:text-[90px] font-black leading-[0.9] tracking-[-0.04em] mb-10">
+            함께 성장할<br />
+            <span className="text-white/20">크리에이터를</span><br />
+            찾습니다.
           </h2>
-          <p className="text-black/50 text-lg mb-10 max-w-lg mx-auto leading-relaxed">
+          <p className="text-white/40 text-base md:text-lg leading-relaxed mb-12 max-w-lg">
             두호와 함께하면 브랜드 협업, 라이브 커머스,<br />
-            콘텐츠 제작을 체계적으로 지원받을 수 있어요.
+            콘텐츠 제작을 체계적으로 지원받을 수 있습니다.
           </p>
           <Link href="/apply"
-            className="inline-flex items-center gap-3 px-10 py-5 bg-black text-white text-sm font-bold tracking-widest hover:bg-zinc-800 transition-colors">
-            지원하기 <ArrowRight size={16} />
+            className="inline-flex items-center gap-3 px-10 py-5 bg-white text-black text-[12px] font-black tracking-[0.2em] hover:bg-white/88 transition-colors">
+            지원하기 <ArrowRight size={15} />
           </Link>
         </div>
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="bg-black border-t border-white/5 py-12">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-8">
+      <footer className="border-t border-white/[0.06] py-16">
+        <div className="max-w-[1400px] mx-auto px-8 md:px-12 flex flex-col md:flex-row justify-between gap-10">
           <div>
-            <p className="text-xl font-black tracking-widest mb-3">DOOHO<span className="text-white/20">.</span></p>
-            <p className="text-xs text-white/30 leading-relaxed">MCN 에이전시 × 쇼핑몰<br />상담 · 협업 문의: contact@dooho.kr</p>
+            <p className="text-[15px] font-black tracking-[0.25em] text-white mb-4">DOOHO</p>
+            <p className="text-xs text-white/25 leading-relaxed">
+              MCN 에이전시 × DH SHOP<br />
+              contact@dooho.kr
+            </p>
           </div>
-          <div className="flex gap-12 text-[11px] tracking-widest text-white/30">
-            <div className="flex flex-col gap-3">
+          <div className="flex gap-16 text-[11px] font-bold tracking-[0.2em] text-white/25">
+            <div className="flex flex-col gap-4">
               <Link href="/about" className="hover:text-white transition-colors">ABOUT</Link>
-              <Link href="/shop" className="hover:text-white transition-colors">SHOP</Link>
-            </div>
-            <div className="flex flex-col gap-3">
               <Link href="/creators" className="hover:text-white transition-colors">CREATORS</Link>
-              <Link href="/apply" className="hover:text-white transition-colors">APPLY</Link>
+            </div>
+            <div className="flex flex-col gap-4">
+              <Link href="/apply" className="hover:text-white transition-colors">CONTACT</Link>
+              <a href="https://instagram.com" target="_blank" rel="noopener" className="hover:text-white transition-colors">INSTAGRAM</a>
             </div>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-6 mt-10 pt-6 border-t border-white/5">
-          <p className="text-[10px] text-white/20 tracking-widest">© 2025 DOOHO CORP. ALL RIGHTS RESERVED.</p>
+        <div className="max-w-[1400px] mx-auto px-8 md:px-12 mt-12 pt-6 border-t border-white/[0.04]">
+          <p className="text-[10px] text-white/15 tracking-[0.2em]">© 2025 DOOHO CORP. ALL RIGHTS RESERVED.</p>
         </div>
       </footer>
     </main>
